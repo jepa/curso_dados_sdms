@@ -88,3 +88,4 @@ Caso nao funcionar, navegue ate o arquivo, abra e execute o script de forma manu
 - [How to explain the ROC curve and ROC AUC score?](https://www.evidentlyai.com/classification-metrics/explain-roc-curve)
 
 # Participantes do curso
+Jay
