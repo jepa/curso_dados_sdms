@@ -19,19 +19,19 @@ library(here)
 source(paste0(here(),"/sessoes/funcoes_de_apoio/instalar_pacotes.R"))
 
 packages <- c(
-              "sf", # for loading shapefiles
-              "sp",
-              "tools", # for loading shapefiles
-              "here", # for easy paths
-              "rnaturalearth",
-              "viridis", # color-blind friendly pallets
-              "biomod2", 
-              "raster",
-              "janitor",
-              "tidyverse",
-              "tidyterra", # Para fazer plot das predictions
-              "pROC" # para fazer plot de AUC
-              )
+  "sf", # for loading shapefiles
+  "sp",
+  "tools", # for loading shapefiles
+  "here", # for easy paths
+  "rnaturalearth",
+  "viridis", # color-blind friendly pallets
+  "biomod2", 
+  "raster",
+  "janitor",
+  "tidyverse",
+  "tidyterra", # Para fazer plot das predictions
+  "pROC" # para fazer plot de AUC
+)
 
 ipak(packages)
 
@@ -43,7 +43,7 @@ select <- dplyr::select
 
 ```
 
- 
+
 # Objectivo
 
 Nesta sessao, aprenderemos como criar e avaliar modelos de distribuição de espécies (SDMs) usando o pacote `biomod2` em R. Ao final desta sessão, você deverá ser capaz de preparar seus dados, construir um modelo e visualizar os resultados.
@@ -59,7 +59,7 @@ Para modelagem de distribuição de espécies, você precisará de dois componen
 
 
 
-## Preparar dados ambientais
+## 1.1 Preparar dados ambientais
 
 Você precisará de camadas ambientais para a região de interesse. Normalmente são camadas raster, que você pode carregar usando o pacote raster. Essas camadas podem ser dados climáticos (temperatura, precipitação, etc.), cobertura do solo, elevação, etc.
 
@@ -67,9 +67,10 @@ Você precisará de camadas ambientais para a região de interesse. Normalmente 
 # Carregar dados ambientais
 
 # Lista de rasters individuais
-raster_path <- list.files("../03_dados/02_variaveis/",full.names = T)[-7]
+raster_path <- list.files("../03_dados/02_variaveis/",
+                          full.names = T,
+                          pattern = ".tif")
 
-# Por que usamos o "[-7]"?
 raster_path
 
 # Carrega todos os rasters juntos
@@ -77,12 +78,12 @@ env_data <- stack(raster_path)
 
 # Vamos ver
 plot(env_data)
-  
+
 
 ```
 
 
-## Preparar dados de ocorrencia 
+## 1.2 Preparar dados de ocorrencia 
 
 Prepare seus dados de ocorrência de espécies. Você deverá ter a latitude e longitude de cada ponto de ocorrência, bem como uma variável de resposta binária indicando se a espécie está presente ou não.
 
@@ -97,14 +98,14 @@ name_sf <- "occ_data_filter_edit.shp"
 
 # Load it!
 occ_sf <- st_read(dsn = path_sf,
-                        layer =file_path_sans_ext(name_sf))
+                  layer =file_path_sans_ext(name_sf))
 
 ### TAMBEM FUNCIONA ASSIM
-occ_sf <- st_read("../03_dados/01_ocorrencias/occ_data_filter_edit.shp")
+# occ_sf <- st_read("../03_dados/01_ocorrencias/occ_data_filter_edit.shp")
 
 # Seleccionar occ
 occ_data <- as.data.frame(occ_sf) %>% 
-  select(sptdst_,longitd,latitud)
+  select(longitd,latitud)
 
 # extrair coordenadas
 coordinates(occ_data) <- ~longitd + latitud
@@ -117,9 +118,27 @@ ggplot(occ_sf) +
 ```
 
 
-## 2. Construçao do modelo
+## 1.3 Formatar dados para o `BIOMOD`
 
-### Opções globais do modelo (`BIOMOD_Modeling`)
+Para construir o modelo, primeiro precisamos criar um objeto biomod2 usando a função BIOMOD_FormatingData. Esta função prepara os dados de espécies e dados ambientais para modelagem.
+
+
+```{r}
+
+biomod_data <- BIOMOD_FormatingData(
+  resp.var = occ_data,
+  expl.var = env_data,
+  resp.name = "marmosops_incanus",
+  PA.nb.rep = 3, # NUmber of batch pseudo absent (at least 3)
+  PA.strategy = 'random'
+)
+
+
+```
+
+# 2. Construçao do modelo
+
+## 2.1 Opções globais do modelo (`BIOMOD_Modeling`)
 
 Esta seção seleciona as diferentes opções que queremos incluir em nosso modelo. 
 
@@ -136,6 +155,7 @@ Esta seção seleciona as diferentes opções que queremos incluir em nosso mode
 ```{r}
 # Escolha os algoritmos a ser usados
 mds_algo <- c('GLM','GAM',"ANN","RF")
+
 # Número de repetições
 n_rep <- 3 # Número de repetições que desejo (seleção aleatória de variáveis) 
 
@@ -148,40 +168,21 @@ eval_metric <- c("ROC","TSS")
 # Opções globais BIOMOD_EnsembleModeling
 
 # Limite de inclusão do modelo
-model_thresh <- c(0.5,0.5) 
+model_thresh <- c(0.5, 0.5) 
 
 ```
 
 
-### Estrutura e opções do modelo
-
-Para construir o modelo, primeiro precisamos criar um objeto biomod2 usando a função BIOMOD_FormatingData. Esta função prepara os dados de espécies e dados ambientais para modelagem.
 
 
-```{r}
-
-
-
-biomod_data <- BIOMOD_FormatingData(
-  resp.var = occ_data,
-  expl.var = env_data,
-  resp.xy = coords,
-  resp.name = "marmosops_incanus",
-  PA.nb.rep = 3, # NUmber of batch pseudo absent (at least 3)
-  PA.strategy = 'random'
-)
-
-
-```
-
-### Execução do modelo
+## 2.2 Execução do modelo
 
 
 Agora que os dados estão preparados, você pode executar vários modelos de distribuição de espécies usando o BIOMOD2. Suporta múltiplas técnicas de modelagem, incluindo MaxEnt, Random Forest, GLM e muito mais.
 
 
 
-- *bm.format*, é o objeto `biomod2` que você acabou de criar com a função `BIOMOD_FormatingData()`
+- *biomod_data*, é o objeto `biomod2` que você acabou de criar com a função `BIOMOD_FormatingData()`
 
 - *modelos*, certifique-se de que mds_algo esteja definido corretamente. Deve ser um vetor de caracteres contendo os nomes dos modelos que você deseja usar (por exemplo, c("GLM", "RF", "MaxEnt")). As opções incluem: 'ANN', 'CTA', 'FDA', 'GAM', 'GBM', 'GLM', 'MARS', 'MAXENT', 'MAXNET', 'RF', 'SRE' ou 'XGBOOST
 
@@ -211,53 +212,56 @@ biomod_model <- BIOMOD_Modeling(
 
 ```
 
-# Explore response curves
+## 2.3 Explore response curves
 
 ```{r}
 
 # Plot response curve
 env_window <- bm_PlotResponseCurves(
   biomod_model,
-  fixed.var = 'mean')
+  fixed.var = 'mean',
+  models.chosen = c("marmosops.incanus_PA1_RUN1_GAM",
+                    "marmosops.incanus_PA2_RUN1_GAM"))
+
 ```
 
 Sao tantos modelos que nao da pra entender nada, enao vamos fazer um pomedio dos melhores modelos
 
 ```{r}
 
-  # var_plot <-
-    as.data.frame(env_window$tab) %>% 
-    filter(pred.val < 0.99 & pred.val > 0.1 # so os melhores
-    ) %>%
-    group_by(expl.name,expl.val) %>% 
-    summarise_at(vars(pred.val),
-                 c(mean,sd),
-                 na.rm = T) %>% 
-    ggplot() +
-    geom_ribbon(
-      aes(
-        x = expl.val,
-        ymax = fn1+fn2,
-        ymin = fn1-fn2
-      ),
-      fill = "grey"
-    ) +
-    geom_line(
-      aes(
-        x = expl.val,
-        y = fn1
-      ),
-      color = "black"
-    ) +
-    theme_classic() +
-    labs(x = "Valores variavel explicativa",
-         y = "Valores preditos") +
-    facet_wrap(~expl.name, scales = "free", ncol = 3) 
+# var_plot <-
+as.data.frame(env_window$tab) %>% 
+  # filter(pred.val < 0.99 & pred.val > 0.1 # so os melhores
+  # ) %>%
+  group_by(expl.name,expl.val) %>% 
+  summarise_at(vars(pred.val),
+               c(mean,sd),
+               na.rm = T) %>% 
+  ggplot() +
+  geom_ribbon(
+    aes(
+      x = expl.val,
+      ymax = fn1+fn2,
+      ymin = fn1-fn2
+    ),
+    fill = "grey"
+  ) +
+  geom_line(
+    aes(
+      x = expl.val,
+      y = fn1
+    ),
+    color = "black"
+  ) +
+  theme_classic() +
+  labs(x = "Valores variavel explicativa",
+       y = "Valores preditos") +
+  facet_wrap(~expl.name, scales = "free", ncol = 3) 
 
 ```
 
 
-# Avaliações de modelo
+## 2.4 Avaliações de modelo
 
 Depois de executar os modelos, você pode avaliar seu desempenho usando diversas métricas de avaliação (por exemplo, AUC, TOC, etc.). biomod2 fornece automaticamente métricas de validação cruzada.
 
@@ -272,15 +276,16 @@ print(biomod_model_evaluation)
 ```
 
 
-## Plot de ROC and TSS
 
 ```{r}
+# Plot de ROC and TSS
+
 # Fazer figura TSS vs ROC
 bm_PlotEvalMean(biomod_model) 
 
 ```
 
-# Predição futura
+## 2.5 Predições
 
 After training and evaluating the models, you can project the models to other areas or future scenarios using new environmental data. This is particularly useful if you want to make predictions for other locations or future time points.
 
@@ -298,12 +303,12 @@ predictions_biomod <- BIOMOD_Projection(
   bm.mod = biomod_model,
   models.chosen = well_peform_m,
   new.env = env_data,  
-  proj.name = "Future_Prediction"
+  proj.name = "Prediction"
 )
 
 ```
 
-## Explorar as predictions
+## 3.3 Explorar as predictions
 
 ```{r}
 
@@ -313,9 +318,61 @@ plot(predictions_biomod)
 ```
 
 
+# 4. Modelos médios poderados
+
+Aqui vamos fazer um modelo médio usando os modelos construidos na etapa anterior. O modelo médio será ponderado pelo TSS de cada um dos modelos.
+```{r}
+# Faça previsões médias usando os modelos treinados
+
+model_ens <- BIOMOD_EnsembleModeling(
+  bm.mod = biomod_model,
+  models.chosen = well_peform_m,
+  metric.select = "TSS", 
+  em.by = "all")
+```
+
+## 4.1 Explore response curves
+
+```{r}
+
+# Plot response curve
+env_window <- bm_PlotResponseCurves(
+  model_ens,
+  fixed.var = 'mean')
+
+```
 
 
-# Create pseudo-absence
+## 4.2 Avaliações de modelo
+
+Depois de executar os modelos, você pode avaliar seu desempenho usando diversas métricas de avaliação (por exemplo, AUC, TOC, etc.). biomod2 fornece automaticamente métricas de validação cruzada.
+
+```{r}
+
+# Avaliar o performance do modelo
+biomod_model_ens_evaluation <- get_evaluations(model_ens)
+
+# Mostrar resultados
+print(biomod_model_ens_evaluation)
+
+```
+
+## 4.3 Predições médias
+```{r}
+
+predictions_biomod_ens <- BIOMOD_EnsembleForecasting(
+  bm.em = model_ens,
+  new.env = env_data,
+  proj.name = "ens_model"
+)
+
+plot(predictions_biomod_ens)
+```
+
+
+
+# Extra
+## Create pseudo-absence
 
 If your observation data consists only of presence points (i.e., you have no true absence data), you should create pseudo-absences to use in species distribution modeling (SDM), especially when you want to evaluate the model using performance metrics like AUC (Area Under the Curve) or ROC (Receiver Operating Characteristic) curves.
 
@@ -329,7 +386,7 @@ When you only have presence data, your model can't distinguish between presence 
 
 Since you don't have true absences (i.e., points where the species was not present), you can generate pseudo-absences—artificial absence data based on random sampling. These pseudo-absences are typically sampled from the area or region where your environmental data (e.g., raster layers of climate, topography) exists.
 
-### Step 1: Define the Number of Pseudo-Absences
+## Step 1: Define the Number of Pseudo-Absences
 
 Typically, you create an equal number of pseudo-absences as the number of presence points. However, this ratio can be adjusted based on your model or data availability. For example, you might generate 1:1 or 2:1 pseudo-absence points depending on the model or analysis.
 
@@ -343,7 +400,7 @@ n_absences <- n_presences  # Equal number of pseudo-absences
 
 ```
 
-### Step 2: Generate Random Pseudo-Absences
+## Step 2: Generate Random Pseudo-Absences
 You can generate random pseudo-absence points within the study area (defined by your environmental data). For example, if your environmental data is in a raster format, you can extract the extent and sample random points within this extent.
 
 
@@ -383,7 +440,7 @@ plot(pseudo_absence_points)
 ```
 
 
-### Step 3: Extract Environmental Data for Pseudo-Absences
+## Step 3: Extract Environmental Data for Pseudo-Absences
 
 Once you have the pseudo-absence points, you can extract environmental data for those points. This is important because your presence and pseudo-absence points should have the same environmental variables to make them comparable.
 
@@ -399,7 +456,7 @@ plot(env_data)
 points(pseudo_absence_points, col = "red")
 ```
 
-### Step 4: Create Combined Presence/Absence Data
+## Step 4: Create Combined Presence/Absence Data
 
 Now that you have the presence data and pseudo-absence data, you can combine them into a single dataset. The presence points will be labeled with a 1, and the pseudo-absence points will be labeled with a 0.
 
