@@ -31,7 +31,7 @@ Estes slides foram baseados no curso "Introdução à modelagem de distribuiçã
 
 ---
 
-background-image: url(img/github_logo.png)
+background-image: url(../../img/github_logo.png)
 background-size: 500px
 background-position: 50% 70%
 
@@ -68,7 +68,7 @@ class: inverse, center, middle
 
 ---
 
-background-image: url(img/r_logo.svg)
+background-image: url(../img/r_logo.svg)
 background-size: 400px
 background-position: 50% 70%
 
@@ -84,7 +84,7 @@ O R é uma **linguagem de programação livre** (*open source*), direcionada à 
 
 ---
 
-background-image: url(img/r_power.jpg)
+background-image: url(../img/r_power.jpg)
 background-size: 500px
 background-position: 50% 80%
 
@@ -93,7 +93,7 @@ background-position: 50% 80%
 ## E por que usar o R?
 ---
 
-background-image: url(img/general_curso_r.png), url(img/general_cinco_motivos.png)
+background-image: url(../img/general_curso_r.png), url(../img/general_cinco_motivos.png)
 background-size: 500px, 400px
 background-position: 25% 80%, 90% 90%
 
@@ -113,7 +113,7 @@ background-position: 25% 80%, 90% 90%
 
 ---
 
-background-image: url(img/r_rollercoaster.png), url(img/general_code_meme.jpg)
+background-image: url(../img/r_rollercoaster.png), url(../img/general_code_meme.jpg)
 background-size: 600px, 500px
 background-position: 7% 40%, 91% 80%
 
@@ -129,7 +129,7 @@ background-position: 7% 40%, 91% 80%
 
 ---
 
-background-image: url(img/r_rstudio_vs02.png),url(img/r_rstudio_vs03.png)
+background-image: url(../img/r_rstudio_vs02.png),url(../img/r_rstudio_vs03.png)
 background-size: 650px, 650px
 background-position: 50% 30%, 50% 90%
 
@@ -145,7 +145,7 @@ background-position: 50% 30%, 50% 90%
 
 ---
 
-background-image: url(img/rstudio.png)
+background-image: url(../img/rstudio.png)
 background-size: 900px
 background-position: 50% 80%
 
@@ -155,7 +155,7 @@ background-position: 50% 80%
 
 ---
 
-background-image: url(img/rstudio.png), url(img/rstudio_logo.svg)
+background-image: url(../img/rstudio.png), url(../img/rstudio_logo.svg)
 background-size: 500px, 300px
 background-position: 90% 88%, 90% 35%
 
@@ -178,7 +178,7 @@ background-position: 90% 88%, 90% 35%
 
 ---
 
-background-image: url(img/rstudio_project_logo.png), url(img/general_teressact.jpg), url(img/rstudio_project.png)
+background-image: url(../img/rstudio_project_logo.png), url(../img/general_teressact.jpg), url(../img/rstudio_project.png)
 background-size: 100px, 100px, 700px 
 background-position: 95% 10%, 95% 35%, 60% 80%
 
@@ -192,7 +192,7 @@ background-position: 95% 10%, 95% 35%, 60% 80%
 
 ---
 
-background-image: url(img/rstudio_project_logo.png), url(img/general_teressact.jpg), url(img/rstudio_project.webp)
+background-image: url(../img/rstudio_project_logo.png), url(../img/general_teressact.jpg), url(../img/rstudio_project.webp)
 background-size: 100px, 100px, 400px
 background-position: 95% 10%, 95% 35%, 50% 90%
 
@@ -206,7 +206,7 @@ background-position: 95% 10%, 95% 35%, 50% 90%
 
 ---
 
-background-image: url(img/rstudio_script.png)
+background-image: url(../img/rstudio_script.png)
 background-size: 450px
 background-position: 50% 90%
 
@@ -240,7 +240,7 @@ background-position: 50% 90%
 
 ---
 
-background-image: url(img/rstudio_script.jpg)
+background-image: url(../img/rstudio_script.jpg)
 background-size: 700px
 background-position: 50% 100%
 
@@ -421,7 +421,7 @@ class: inverse, center, middle
 
 --
 
-background-image: url(img/r_assignment.jpg)
+background-image: url(../img/r_assignment.jpg)
 background-size: 450px
 background-position: 80% 90%
 
@@ -446,7 +446,7 @@ obj10 <- 10
 
 --
 
-background-image: url(img/gif_where.gif)
+background-image: url(../img/gif_where.gif)
 background-size: 500px
 background-position: 50% 90%
 
@@ -499,7 +499,7 @@ obj
 
 ---
 
-background-image: url(img/code_function.png), url(img/code_function_annotated.png)
+background-image: url(../img/code_function.png), url(../img/code_function_annotated.png)
 background-size: 250px, 400px
 background-position: 87% 35%, 85% 90%
 
@@ -550,13 +550,13 @@ class: inverse, center, middle
 ---
 
 class: clear, inverse
-background-image: url(img/gif_google_it.gif)
+background-image: url(../img/gif_google_it.gif)
 background-size: 1000px
 
 ---
 
 class: clear
-background-image: url(img/general_ajuda_google.png)
+background-image: url(../img/general_ajuda_google.png)
 background-size: 1100px
 background-position: 50% 50%
 
@@ -576,7 +576,7 @@ class: inverse, center, middle
 
 ---
 
-background-image: url(img/package_r.png)
+background-image: url(../img/package_r.png)
 background-size: 150px
 background-position: 97% 7%
 
@@ -596,7 +596,7 @@ search()
 
 ---
 
-background-image: url(img/package_r.png)
+background-image: url(../img/package_r.png)
 background-size: 150px
 background-position: 97% 7%
 
@@ -617,7 +617,7 @@ library()
 
 ---
 
-background-image: url(img/package_r.png)
+background-image: url(../img/package_r.png)
 background-size: 150px
 background-position: 97% 7%
 
@@ -639,7 +639,7 @@ https://github.com/vegandevs/vegan
 
 ---
 
-background-image: url(img/package_r.png)
+background-image: url(../img/package_r.png)
 background-size: 150px
 background-position: 97% 7%
 
@@ -663,7 +663,7 @@ install.packages("vegan")
 
 ---
 
-background-image: url(img/package_r.png)
+background-image: url(../img/package_r.png)
 background-size: 150px
 background-position: 97% 7%
 
@@ -687,7 +687,7 @@ library(vegan)
 
 ---
 
-background-image: url(img/package_r.png)
+background-image: url(../img/package_r.png)
 background-size: 150px
 background-position: 97% 7%
 
@@ -730,7 +730,7 @@ help("mean") # arquivo .html
 
 ---
 
-background-image: url(img/rstudio_help.png)
+background-image: url(../img/rstudio_help.png)
 background-size: 600px
 background-position: 50% 50%
 
@@ -738,7 +738,7 @@ background-position: 50% 50%
 
 ---
 
-background-image: url(img/general_setwd.png)
+background-image: url(../img/general_setwd.png)
 background-size: 400px
 background-position: 90% 90%
 
@@ -804,7 +804,7 @@ class: inverse, center, middle
 
 ---
 
-background-image: url(img/general_data_science_r4ds.png)
+background-image: url(../img/general_data_science_r4ds.png)
 background-size: 900px
 background-position: 50% 75%
 
@@ -818,7 +818,7 @@ Fonte: [@allison_horst](https://twitter.com/allison_horst)
 
 ---
 
-background-image: url(img/tidyverse_funcionalidades.png)
+background-image: url(../img/tidyverse_funcionalidades.png)
 background-size: 1100px
 background-position: 50% 55%
 
@@ -832,7 +832,7 @@ background-position: 50% 55%
 
 ---
 
-background-image: url(img/cover_data_science_r.png)
+background-image: url(../img/cover_data_science_r.png)
 background-size: 280px
 background-position: 50% 55%
 
@@ -846,7 +846,7 @@ background-position: 50% 55%
 
 ---
 
-background-image: url(img/person_rene_magritte.jpg), url(img/tidyverse_magritte_pipe.jpg)
+background-image: url(../img/person_rene_magritte.jpg), url(../img/tidyverse_magritte_pipe.jpg)
 background-size: 350px, 550px
 background-position: 7% 60%, 85% 75%
 
@@ -858,7 +858,7 @@ background-position: 7% 60%, 85% 75%
 
 ---
 
-background-image: url(img/general_fog01.jpg)
+background-image: url(../img/general_fog01.jpg)
 background-size: 500px
 background-position: 50% 90%
 
@@ -875,7 +875,7 @@ sqrt(sum(1:100))
 
 ---
 
-background-image: url(img/general_fog02.jpg)
+background-image: url(../img/general_fog02.jpg)
 background-size: 300px
 background-position: 50% 90%
 
@@ -892,7 +892,7 @@ sqrt(sum(1:100))
 
 ---
 
-background-image: url(img/gif_mario.gif), url(img/waterfall.gif)
+background-image: url(../img/gif_mario.gif), url(../img/waterfall.gif)
 background-size: 300px, 460px
 background-position: 30% 90%, 87% 90%
 
@@ -929,8 +929,12 @@ class: inverse, center, middle
 
 Contatos:
 
-`r icons::icon_style(icons::fontawesome(name = "envelope", style = "solid"), fill = "#23373b")` [brunno.oliveira@me.com]()  
+`r icons::icon_style(icons::fontawesome(name = "envelope", style = "solid"), fill = "#23373b")` [brunno.oliveira@me.com]()
 `r icons::icon_style(icons::fontawesome(name = "link", style = "solid"), fill = "#23373b")` [https://oliveirabrunno.wordpress.com/](https://oliveirabrunno.wordpress.com/)
+
+ [brunno.oliveira@me.com]()
+ [https://oliveirabrunno.wordpress.com/](https://oliveirabrunno.wordpress.com/)
+
 
 <br><br><br><br><br>
 
