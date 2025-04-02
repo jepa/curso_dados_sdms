@@ -372,23 +372,22 @@ plot(predictions_biomod_ens)
 
 
 # Extra
-## Create pseudo-absence
 
-If your observation data consists only of presence points (i.e., you have no true absence data), you should create pseudo-absences to use in species distribution modeling (SDM), especially when you want to evaluate the model using performance metrics like AUC (Area Under the Curve) or ROC (Receiver Operating Characteristic) curves.
+## Criar Pseudo-Ausências
 
-## Why Create Pseudo-Absences?
+Se seus dados de observação consistem apenas em pontos de presença (ou seja, você não tem dados reais de ausência), é necessário criar pseudo-ausências para usar na modelagem de distribuição de espécies (SDM), especialmente quando deseja avaliar o modelo usando métricas de desempenho como AUC (Área Sob a Curva) ou curvas ROC (Receiver Operating Characteristic).
 
-When you only have presence data, your model can't distinguish between presence and absence because absence points are not available. In SDM, you need both presence and absence data to:
+## Por que Criar Pseudo-Ausências?
 
-- Train your model (the algorithm needs to learn what features correlate with presence vs absence).
+Quando você tem apenas dados de presença, seu modelo não consegue diferenciar entre presença e ausência, pois não há pontos de ausência disponíveis. Na modelagem de distribuição de espécies, é necessário ter tanto dados de presença quanto de ausência para:
+	-	Treinar o modelo (o algoritmo precisa aprender quais características estão correlacionadas com presença vs. ausência).
+	-	Avaliar o desempenho do modelo (por exemplo, comparando as probabilidades preditas de presença vs. ausência).
 
-- Evaluate model performance (e.g., by comparing the predicted probabilities of presence vs absence).
+Como você não tem ausências reais (ou seja, pontos onde a espécie não estava presente), pode gerar pseudo-ausências — dados artificiais de ausência com base em amostragem aleatória. Essas pseudo-ausências geralmente são selecionadas dentro da área ou região onde seus dados ambientais (por exemplo, camadas raster de clima, topografia) estão disponíveis.
 
-Since you don't have true absences (i.e., points where the species was not present), you can generate pseudo-absences—artificial absence data based on random sampling. These pseudo-absences are typically sampled from the area or region where your environmental data (e.g., raster layers of climate, topography) exists.
+## Etapa 1: Definir o Número de Pseudo-Ausências
 
-## Step 1: Define the Number of Pseudo-Absences
-
-Typically, you create an equal number of pseudo-absences as the number of presence points. However, this ratio can be adjusted based on your model or data availability. For example, you might generate 1:1 or 2:1 pseudo-absence points depending on the model or analysis.
+Normalmente, cria-se um número igual de pseudo-ausências ao número de pontos de presença. No entanto, essa proporção pode ser ajustada dependendo do modelo ou da disponibilidade de dados. Por exemplo, você pode gerar pontos de pseudo-ausência em uma proporção de 1:1 ou 2:1, dependendo do modelo ou análise.
 
 ```{r}
 
@@ -400,88 +399,93 @@ n_absences <- n_presences  # Equal number of pseudo-absences
 
 ```
 
-## Step 2: Generate Random Pseudo-Absences
-You can generate random pseudo-absence points within the study area (defined by your environmental data). For example, if your environmental data is in a raster format, you can extract the extent and sample random points within this extent.
+Etapa 2: Gerar Pseudo-Ausências Aleatórias
+
+Você pode gerar pontos de pseudo-ausência aleatórios dentro da área de estudo (definida pelos seus dados ambientais). Por exemplo, se seus dados ambientais estiverem em formato raster, você pode extrair a extensão e amostrar pontos aleatórios dentro dessa área.
 
 
 ```{r}
 
-# Get the extent of your study area (environmental data)
-env_extent <- extent(env_data)  # You can replace `env_data` with your actual raster object
+# Suponha que você tenha 100 pontos de presença:
+n_presences <- nrow(occ_data)  # ou length(occ_data), dependendo da estrutura dos dados
 
-# Assuming occ_data is a SpatialPoints object
+# Gerar o mesmo número de pseudo-ausências que presenças:
+n_absences <- n_presences  # Número igual de pseudo-ausências
+
+# Obter a extensão da área de estudo (dados ambientais)
+env_extent <- extent(env_data)  # Substitua `env_data` pelo seu raster real
+
+# Converter os dados de presença para um dataframe de coordenadas
 occ_data_df <- as.data.frame(coordinates(occ_data))
 
-# Extract environmental variables for presence points
+# Extrair valores ambientais para os pontos de presença
 presence_env_values <- extract(env_data, occ_data)
 
-# Combine presence coordinates with environmental values
+# Combinar coordenadas de presença com os valores ambientais
 occ_data_df <- cbind(occ_data_df, presence_env_values)
 
-
-# Set a seed for reproducibility (optional)
+# Definir uma semente para reprodutibilidade (opcional)
 set.seed(123)
 
-# Generate random coordinates within the extent of the environmental data
+# Gerar coordenadas aleatórias dentro da extensão dos dados ambientais
 random_coords <- cbind(
   runif(n_absences, env_extent@xmin, env_extent@xmax),
   runif(n_absences, env_extent@ymin, env_extent@ymax)
 )
 
-# Convert these coordinates to SpatialPoints (SpatialPoints object)
+# Converter essas coordenadas para um objeto SpatialPoints
 pseudo_absence_points <- SpatialPoints(random_coords, proj4string = CRS(proj4string(env_data)))
 
 pseudo_absence_points
 
-# Optionally, check if they fall within your study area (if needed)
+# Opcionalmente, verificar se os pontos caem dentro da área de estudo
 plot(env_data)
 points(pseudo_absence_points, col = "red")
 plot(pseudo_absence_points)
 ```
 
 
-## Step 3: Extract Environmental Data for Pseudo-Absences
+## Etapa 3: Extrair Dados Ambientais para Pseudo-Ausências
 
-Once you have the pseudo-absence points, you can extract environmental data for those points. This is important because your presence and pseudo-absence points should have the same environmental variables to make them comparable.
-
+Depois de gerar os pontos de pseudo-ausência, é necessário extrair os dados ambientais para esses pontos. Isso é importante porque os pontos de presença e pseudo-ausência devem conter as mesmas variáveis ambientais para serem comparáveis.
 
 ```{r}
-# Extract environmental values at pseudo-absence locations
+# Extrair valores ambientais para as localizações de pseudo-ausência
 pseudo_absence_values <- extract(env_data, pseudo_absence_points)
 
 head(pseudo_absence_values)
 
-# Optionally, plot the pseudo-absences on your study area for visualization
+# Opcionalmente, visualizar os pseudo-ausentes na área de estudo
 plot(env_data)
 points(pseudo_absence_points, col = "red")
 ```
 
-## Step 4: Create Combined Presence/Absence Data
+## Etapa 4: Criar um Conjunto de Dados Combinado de Presença/Ausência
 
-Now that you have the presence data and pseudo-absence data, you can combine them into a single dataset. The presence points will be labeled with a 1, and the pseudo-absence points will be labeled with a 0.
+Agora que você tem os dados de presença e pseudo-ausência, pode combiná-los em um único conjunto de dados. Os pontos de presença serão rotulados como 1, e os pontos de pseudo-ausência serão rotulados como 0.
 
 ```{r}
 
-# Create a data frame for pseudo-absences, including coordinates and environmental values
+# Criar um dataframe para pseudo-ausências, incluindo coordenadas e valores ambientais
 pseudo_absence_df <- as.data.frame(random_coords)
-colnames(pseudo_absence_df) <- c("longitd", "latitud")  # Rename columns for clarity
+colnames(pseudo_absence_df) <- c("longitude", "latitude")  # Renomear colunas para maior clareza
 
 pseudo_absence_df <- cbind(pseudo_absence_df, pseudo_absence_values)
 
-# Combine presence and pseudo-absence data for environmental variables
-combined_occ_data <- rbind(occ_data_df, pseudo_absence_df)  # Combine occurrence and pseudo-absence data
+# Combinar os dados de presença e pseudo-ausência para variáveis ambientais
+combined_occ_data <- rbind(occ_data_df, pseudo_absence_df)  # Combinar dados de ocorrência e pseudo-ausência
 
-# Create the presence data (assuming presence data is already in a binary format, 1 = presence)
+# Criar a variável de presença (assumindo que a presença é representada por 1)
 presence_data <- rep(1, n_presences)
 
-# Create the absence data (pseudo-absences = 0)
+# Criar a variável de ausência (pseudo-ausências = 0)
 absence_data <- rep(0, n_absences)
 
-# Combine the two datasets
+# Combinar as duas variáveis
 combined_response <- c(presence_data, absence_data)
 
-# Geet coordinates system
-coords <- bind_cols(combined_occ_data$longitd,combined_occ_data$latitud)
-colnames(coords) <- c("longitd","latitud")
+# Obter sistema de coordenadas
+coords <- bind_cols(combined_occ_data$longitude, combined_occ_data$latitude)
+colnames(coords) <- c("longitude", "latitude")
 
 ```
