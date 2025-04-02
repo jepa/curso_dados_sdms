@@ -30,7 +30,7 @@ Estes slides foram baseados no curso "Introdução à modelagem de distribuiçã
 
 ---
 
-background-image: url(img/github_logo.png)
+background-image: url(../img/github_logo.png)
 background-size: 500px
 background-position: 50% 70%
 
@@ -44,7 +44,7 @@ background-position: 50% 70%
 
 ---
 
-background-image: url(img/sdm_dados.png)
+background-image: url(../img/sdm_dados.png)
 background-size: 500px
 background-position: 80% 80%
 
@@ -68,7 +68,7 @@ class: inverse, center, middle
 
 ---
 
-background-image: url(img/general_sig.jpg), url(img/geo_data.jpg)
+background-image: url(../img/general_sig.jpg), url(../img/geo_data.jpg)
 background-size: 300px, 480px
 background-position: 32% 70%, 80% 70%
 
@@ -84,7 +84,7 @@ background-position: 32% 70%, 80% 70%
 
 ---
 
-background-image: url(img/geo_vetor_dados.png), url(img/geo_vetor.png)
+background-image: url(../img/geo_vetor_dados.png), url(../img/geo_vetor.png)
 background-size: 650px, 400px
 background-position: 8% 68%, 90% 70%
 
@@ -100,7 +100,7 @@ background-position: 8% 68%, 90% 70%
 
 ---
 
-background-image: url(img/geo_shp_logo.png), url(img/geo_shp_formats.png)
+background-image: url(../img/geo_shp_logo.png), url(../img/geo_shp_formats.png)
 background-size: 150px, 650px
 background-position: 95% 10%, 50% 80%
 
@@ -121,7 +121,7 @@ background-position: 95% 10%, 50% 80%
 
 ---
 
-background-image: url(img/geo_raster.png), url(img/geo_raster_cont_cat.png)
+background-image: url(../img/geo_raster.png), url(../img/geo_raster_cont_cat.png)
 background-size: 400px, 600px
 background-position: 10% 65%, 85% 65%
 
@@ -137,7 +137,7 @@ background-position: 10% 65%, 85% 65%
 
 ---
 
-background-image: url(img/geo_raster.png), url(img/geo_raster_extent.png), url(img/geo_raster_resolution.png), url(img/geo_raster_resolution_diff.png)
+background-image: url(../img/geo_raster.png), url(../img/geo_raster_extent.png), url(../img/geo_raster_resolution.png), url(../img/geo_raster_resolution_diff.png)
 background-size: 400px, 250px, 350px, 600px
 background-position: 10% 65%, 55% 35%, 95% 39%, 85% 90%
 
@@ -152,7 +152,7 @@ background-position: 10% 65%, 55% 35%, 95% 39%, 85% 90%
 
 ---
 
-background-image: url(img/geo_geotiff_logo.png)
+background-image: url(../img/geo_geotiff_logo.png)
 background-size: 600px
 background-position: 50% 55%
 
@@ -169,7 +169,7 @@ background-position: 50% 55%
 
 ---
 
-background-image: url(img/geo_geographic.png)
+background-image: url(../img/geo_geographic.png)
 background-size: 600px
 background-position: 85% 60%
 
@@ -196,7 +196,7 @@ background-position: 85% 60%
 
 ---
 
-background-image: url(img/geo_projection_families01.png), url(img/geo_orange_world.png), url(img/geo_proj.png)
+background-image: url(../img/geo_projection_families01.png), url(../img/geo_orange_world.png), url(../img/geo_proj.png)
 background-size: 450px, 200px, 500px
 background-position: 15% 65%, 78% 30%, 90% 85%
 
@@ -212,7 +212,7 @@ background-position: 15% 65%, 78% 30%, 90% 85%
 
 ---
 
-background-image: url(img/geo_utm_coords.png), url(img/geo_utm_zones.png)
+background-image: url(../img/geo_utm_coords.png), url(../img/geo_utm_zones.png)
 background-size: 300px, 600px
 background-position: 25% 75%, 90% 45%
 
@@ -232,7 +232,7 @@ background-position: 25% 75%, 90% 45%
 
 ---
 
-background-image: url(img/geo_datum01.jpeg)
+background-image: url(../img/geo_datum01.jpeg)
 background-size: 700px
 background-position: 70% 60%
 
@@ -256,7 +256,7 @@ background-position: 70% 60%
 
 ---
 
-background-image: url(img/geo_datum_sad_sirgas.jpg)
+background-image: url(../img/geo_datum_sad_sirgas.jpg)
 background-size: 500px
 background-position: 75% 80%
 
@@ -288,7 +288,7 @@ class: inverse, center, middle
 
 ---
 
-background-image: url(img/crs.png)
+background-image: url(../img/crs.png)
 background-size: 800px
 background-position: 40% 75%
 
@@ -303,7 +303,7 @@ background-position: 40% 75%
 
 ---
 
-background-image: url(img/geo_epsg.png)
+background-image: url(../img/geo_epsg.png)
 background-size: 1000px
 background-position: 50% 80%
 
@@ -319,7 +319,7 @@ background-position: 50% 80%
 
 ---
 
-background-image: url(img/geo_epsg.png)
+background-image: url(../img/geo_epsg.png)
 background-size: 500px
 background-position: 90% 85%
 
@@ -416,7 +416,7 @@ class: inverse, center, middle
 
 ---
 
-background-image: url(img/sdm_ocorrencias_formato.png)
+background-image: url(../img/sdm_ocorrencias_formato.png)
 background-size: 700px
 background-position: 50% 65%
 
@@ -426,7 +426,7 @@ background-position: 50% 65%
 
 ---
 
-background-image: url(img/sdm_occ_fogomuseu.webp)
+background-image: url(../img/sdm_occ_fogomuseu.webp)
 background-size: 400px
 background-position: 55% 75%
 
@@ -445,7 +445,7 @@ background-position: 55% 75%
 
 ---
 
-background-image: url(img/sdm_occ_gbif.png), url(img/sdm_occ_vertnet.png), url(img/sdm_occ_bien.png), url(img/sdm_occ_specieslink.png)
+background-image: url(../img/sdm_occ_gbif.png), url(../img/sdm_occ_vertnet.png), url(../img/sdm_occ_bien.png), url(../img/sdm_occ_specieslink.png)
 background-size: 500px, 500px, 500px, 500px
 background-position: 90% 15%, 90% 58%, 90% 95%, 10% 80%
 
@@ -467,7 +467,7 @@ background-position: 90% 15%, 90% 58%, 90% 95%, 10% 80%
 
 ---
 
-background-image: url(img/sdm_occ_auk.png), url(img/sdm_occ_rgbif.png), url(img/sdm_occ_spocc.png)
+background-image: url(../img/sdm_occ_auk.png), url(../img/sdm_occ_rgbif.png), url(../img/sdm_occ_spocc.png)
 background-size: 200px, 200px, 200px
 background-position: 75% 20%, 60% 70%, 90% 70%
 
@@ -503,7 +503,7 @@ class: inverse, center, middle
 
 ---
 
-background-image: url(img/sdm_occ_vies_brasil02.jpg), url(img/sdm_occ_vies_brasil01.jpg)
+background-image: url(../img/sdm_occ_vies_brasil02.jpg), url(../img/sdm_occ_vies_brasil01.jpg)
 background-size: 600px, 500px
 background-position: 8% 70%, 94% 63%
 
@@ -520,7 +520,7 @@ background-position: 8% 70%, 94% 63%
 
 ---
 
-background-image: url(img/sdm_occ_vies_mundo01.jpg), url(img/sdm_occ_vies_mundo02.jpg)
+background-image: url(../img/sdm_occ_vies_mundo01.jpg), url(../img/sdm_occ_vies_mundo02.jpg)
 background-size: 500px, 600px
 background-position: 7% 65%, 90% 65%
 
@@ -548,7 +548,7 @@ class: inverse, center, middle
 
 ---
 
-background-image: url(img/geo_raster.png)
+background-image: url(../img/geo_raster.png)
 background-size: 550px
 background-position: 50% 65%
 
@@ -561,7 +561,7 @@ background-position: 50% 65%
 
 ---
 
-background-image: url(img/sdm_var_wc.png), url(img/sdm_var_chelsa.gif), url(img/sdm_var_soilgrids.png), url(img/sdm_var_biooracle.jpg)
+background-image: url(../img/sdm_var_wc.png), url(../img/sdm_var_chelsa.gif), url(../img/sdm_var_soilgrids.png), url(../img/sdm_var_biooracle.jpg)
 background-size: 500px, 450px, 480px, 300px
 background-position: 85% 15%, 83% 45%, 87% 91%, 34% 90%
 
@@ -592,7 +592,7 @@ class: inverse, center, middle
 
 ---
 
-background-image: url(img/sdm_var_diff01.png), url(img/sdm_var_diff03.png), url(img/sdm_var_diff02.jpg)
+background-image: url(../img/sdm_var_diff01.png), url(../img/sdm_var_diff03.png), url(../img/sdm_var_diff02.jpg)
 background-size: 380px, 500px, 550px
 background-position: 13% 38%, 7% 85%, 90% 60%
 
@@ -607,7 +607,7 @@ background-position: 13% 38%, 7% 85%, 90% 60%
 
 ---
 
-background-image: url(img/sdm_var_wc02.webp), url(img/sdm_var_interpolacao01.gif), url(img/sdm_var_interpolacao03.png)
+background-image: url(../img/sdm_var_wc02.webp), url(../img/sdm_var_interpolacao01.gif), url(../img/sdm_var_interpolacao03.png)
 background-size: 500px, 300px, 500px
 background-position: 10% 40%, 81% 15%, 90% 85%
 
@@ -671,7 +671,7 @@ class: inverse, center, middle
 
 ---
 
-background-image: url(img/sdm_var_parcimonia.jpg), url(img/sdm_var_ockham_razor.jpg)
+background-image: url(../img/sdm_var_parcimonia.jpg), url(../img/sdm_var_ockham_razor.jpg)
 background-size: 350px, 350px
 background-position: 15% 69%, 80% 70%
 
@@ -688,7 +688,7 @@ background-position: 15% 69%, 80% 70%
 
 ---
 
-background-image: url(img/sdm_var_correlacao01.webp), url(img/sdm_var_correlacao02.webp)
+background-image: url(../img/sdm_var_correlacao01.webp), url(../img/sdm_var_correlacao02.webp)
 background-size: 600px, 600px
 background-position: 75% 40%, 75% 80%
 
@@ -711,7 +711,7 @@ background-position: 75% 40%, 75% 80%
 
 ---
 
-background-image: url(img/sdm_var_vif.jpg)
+background-image: url(../img/sdm_var_vif.jpg)
 background-size: 550px
 background-position: 80% 75%
 
