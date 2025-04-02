@@ -40,7 +40,7 @@ Para criar um projeto, abra o RStudio e selecione `Arquivo` -> `Novo Projeto...`
 \  
 
 ```{r new_proj, echo=FALSE, out.width="60%", fig.align="center"}
-knitr::include_graphics(path = "img/new_proj.png")
+knitr::include_graphics(path = "../img/new_proj.png")
 ```
 
 \
@@ -50,7 +50,7 @@ Você também pode criar um novo projeto clicando no botão 'Projeto' no canto s
 \  
 
 ```{r new_proj1, echo=FALSE, out.width="30%", fig.align="center"}
-knitr::include_graphics(path = "img/new_proj1.png")
+knitr::include_graphics(path = "../img/new_proj1.png")
 ```
 
 \  
@@ -60,7 +60,7 @@ Na próxima janela, selecione 'Novo Projeto'.
 \  
 
 ```{r new_proj2, echo=FALSE, out.width="60%", fig.align="center"}
-knitr::include_graphics(path = "img/new_proj2.png")
+knitr::include_graphics(path = "../img/new_proj2.png")
 ```
 
 \  
@@ -70,7 +70,7 @@ Agora, insira o nome do diretório que você deseja criar no campo 'Nome do dire
 \  
 
 ```{r new_proj3, echo=FALSE, out.width="60%", fig.align="center"}
-knitr::include_graphics(path = "img/new_proj3.png")
+knitr::include_graphics(path = "../img/new_proj3.png")
 ```
 
 \  
@@ -80,7 +80,7 @@ Depois que seu novo projeto for criado, você terá uma nova pasta no seu comput
 \  
 
 ```{r new_proj4, echo=FALSE, out.width="80%", fig.align="center"}
-knitr::include_graphics(path = "img/new_proj4.png")
+knitr::include_graphics(path = "../img/new_proj4.png")
 ```
 
 \  
@@ -90,7 +90,7 @@ A última coisa que sugiro que você faça é selecionar `Ferramentas` -> `Opç�
 \  
 
 ```{r new_proj5, echo=FALSE, out.width="60%", fig.align="center"}
-knitr::include_graphics(path = "img/new_proj5.png")
+knitr::include_graphics(path = "../img/new_proj5.png")
 ```
 
 \  
@@ -108,7 +108,7 @@ O diretório de trabalho é o local padrão onde o R procurará os arquivos que 
 \  
 
 ```{r dir_struct, echo=FALSE, out.width="80%", fig.align="center"}
-knitr::include_graphics(path = "img/dir_struct.png")
+knitr::include_graphics(path = "../img/dir_struct.png")
 ```
 
 \ 
@@ -118,7 +118,7 @@ Você também pode usar a função `getwd()` no Console, que retorna o caminho d
 \  
 
 ```{r dir_struct2, echo=FALSE, out.width="60%", fig.align="center"}
-knitr::include_graphics(path = "img/dir_struct2.png")
+knitr::include_graphics(path = "../img/dir_struct2.png")
 ```
 
 \ 
@@ -232,7 +232,7 @@ Você pode criar sua estrutura de diretório usando o Windows Explorer (ou o Fin
 \  
 
 ```{r dir_struct3, echo=FALSE, out.width="60%", fig.align="center"}
-knitr::include_graphics(path = "img/dir_struct3.png")
+knitr::include_graphics(path = "../img/dir_struct3.png")
 ```
 
 \  
@@ -267,7 +267,7 @@ O nome que você dá aos seus arquivos importa mais do que você imagina. Nomear
 \  
 
 ```{r fn, echo=FALSE, out.width="30%", fig.align="center", fig.cap="source:https://xkcd.com/1459/"}
-knitr::include_graphics(path = "img/xkcd_files.png")
+knitr::include_graphics(path = "../img/xkcd_files.png")
 ```
 
 \  
@@ -352,7 +352,7 @@ Como você escreve seu código depende mais ou menos de você, embora seu objeti
 \  
 
 ```{r poor_code, echo=FALSE, out.width="75%", fig.align="center"}
-knitr::include_graphics(path = "img/before_rcode.png")
+knitr::include_graphics(path = "../img/before_rcode.png")
 ```
 
 \  
@@ -362,7 +362,7 @@ Agora destaque o código e use o pacote `styler` para reformatar
 \  
 
 ```{r styler, echo=FALSE, out.width="60%", fig.align="center"}
-knitr::include_graphics(path = "img/styler.png")
+knitr::include_graphics(path = "../img/styler.png")
 ```
 
 \  
@@ -372,7 +372,7 @@ Para produzir algum código bem formatado
 \  
 
 ```{r better_code, echo=FALSE, out.width="75%", fig.align="center"}
-knitr::include_graphics(path = "img/after_rcode.png")
+knitr::include_graphics(path = "../img/after_rcode.png")
 ```
 
 \  
